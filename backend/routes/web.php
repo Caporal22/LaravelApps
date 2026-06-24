@@ -15,3 +15,21 @@ Route::get('probar_conexion', function(){
         return "No se puede conectar a la base de datos. <br> Error: " . $e->getMessage();
     }
 });
+
+// Query builder
+Route::get('query', function () {
+    $entradas = DB::table('entradas')->get();
+    return $entradas;
+});
+
+// Obtener el primer registro
+Route::get('find', function () {
+    $entradas = DB::table('entradas')->first();
+    return $entradas;
+});
+
+// Filtrado de datos
+Route::get('filtro', function () {
+    $entradas = DB::table('entradas')->where('user_id', 1)->where('titulo','LIKE', '%a%')->get();
+    return $entradas;
+});
